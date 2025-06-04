@@ -18,8 +18,6 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
 
     function playRound(humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
@@ -37,9 +35,24 @@ function playGame() {
         }
     }
 
-    let round = 1;
-    while (round < 5) {
-        playRound(humanChoice, humanSelection);
-        round++;
+    for (let round = 1; round <= 5; round++) {
+        console.log(`Runde ${round}`);
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    console.log("\n **Spiel beendet!** ");
+    console.log(`Endstand: Du ${humanScore} - Computer ${computerScore}`);
+
+    if (humanScore > computerScore) {
+        console.log("Glückwunsch, du hast das Spiel gewonnen!");
+    } else if (humanScore < computerScore) {
+        console.log("Der Computer hat gewonnen. Versuch's nochmal!");
+    } else {
+        console.log("Unentschieden!");
     }
 }
+
+playGame();
